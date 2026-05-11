@@ -3,7 +3,7 @@
 > High-performance terminal string styling for Node.js 20+
 
 [![CI](https://github.com/RemcoDewlde/marker/actions/workflows/ci.yml/badge.svg)](https://github.com/RemcoDewlde/marker/actions/workflows/ci.yml)
-[![Coverage](https://codecov.io/gh/RemcoDewlde/marker/graph/badge.svg?token=CODECOV_TOKEN)](https://codecov.io/gh/RemcoDewlde/marker)
+[![codecov](https://codecov.io/gh/RemcoDewlde/marker/graph/badge.svg?token=4C7L7LVYN1)](https://codecov.io/gh/RemcoDewlde/marker)
 [![npm version](https://img.shields.io/npm/v/marker.svg)](https://www.npmjs.com/package/marker)
 [![Node.js](https://img.shields.io/node/v/marker.svg)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
