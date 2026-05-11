@@ -21,7 +21,7 @@ export default defineConfig({
         text: '0.1.0',
         items: [
           { text: 'Changelog', link: 'https://github.com/RemcoDewlde/marker/releases' },
-          { text: 'npm', link: 'https://www.npmjs.com/package/marker' },
+          { text: 'npm', link: 'https://www.npmjs.com/package/console-marker' },
         ],
       },
     ],
@@ -56,7 +56,7 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/RemcoDewlde/marker' },
-      { icon: 'npm', link: 'https://www.npmjs.com/package/marker' },
+      { icon: 'npm', link: 'https://www.npmjs.com/package/console-marker' },
     ],
 
     footer: {
