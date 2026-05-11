@@ -36,7 +36,10 @@
     "example:imports": "node --import tsx/esm examples/named-imports.ts",
     "example:levels": "node --import tsx/esm examples/levels.ts",
     "example:showcase": "node --import tsx/esm examples/showcase.ts",
-    "example:compare": "node --import tsx/esm examples/compare-chalk.ts"
+    "example:compare": "node --import tsx/esm examples/compare-chalk.ts",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -60,6 +63,7 @@
     "tsup": "^8.0.0",
     "tsx": "^4.0.0",
     "typescript": "^5.5.0",
+    "vitepress": "^1.6.4",
     "vitest": "^2.0.0"
   }
 }
