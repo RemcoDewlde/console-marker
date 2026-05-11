@@ -12,9 +12,6 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/RemcoDewlde/console-marker
-  image:
-    src: /hero.svg
-    alt: marker
 
 features:
   - icon: ⚡
