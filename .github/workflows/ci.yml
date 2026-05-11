@@ -10,7 +10,7 @@ jobs:
     name: Test (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # needed to commit badge on main
+      contents: read
     strategy:
       matrix:
         node: [20, 22, 24]
@@ -40,14 +40,3 @@ jobs:
           flags: unittests
           fail_ci_if_error: false
 
-      # Commit updated badge back to main after every successful push.
-      # [skip ci] prevents the commit from re-triggering this workflow.
-      - name: Commit coverage badge
-        if: matrix.node == 20 && github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          node scripts/gen-badge.mjs
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .github/badges/coverage.json
-          git diff --staged --quiet || git commit -m "chore: update coverage badge [skip ci]"
-          git push
