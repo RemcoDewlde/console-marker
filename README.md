@@ -9,6 +9,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue.svg)](tsconfig.json)
 
+**[Documentation](https://remcodewlde.github.io/marker/)**
+
 A chalk-inspired terminal styling library built from scratch to win where it counts: deep chains, dynamic colors (rgb/hex), and tagged template literals — all with zero runtime dependencies and full TypeScript types included.
 
 ```
