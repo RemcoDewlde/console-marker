@@ -25,7 +25,7 @@ import { Chalk } from 'chalk';
 const m = new Chalk({ level: 0 });
 
 // marker
-import { withLevel } from 'marker';
+import { withLevel } from 'console-marker';
 const m = withLevel(0);
 ```
 

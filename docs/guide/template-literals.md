@@ -5,7 +5,7 @@ marker handles tagged templates natively — no `chalk-template` shim needed.
 ## Basic usage
 
 ```ts
-import marker from 'marker';
+import marker from 'console-marker';
 
 const name = 'Alice';
 const count = 42;

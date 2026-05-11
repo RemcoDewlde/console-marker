@@ -5,7 +5,7 @@ Every style is available as a standalone named export for tree-shaking.
 ## Usage
 
 ```ts
-import { red, bold, green, bgBlue, cyan, italic } from 'marker';
+import { red, bold, green, bgBlue, cyan, italic } from 'console-marker';
 
 console.log(red('error'));
 console.log(bold(green('ok')));
@@ -17,7 +17,7 @@ console.log(bgBlue(cyan('info')));
 Named exports are `Builder` functions — they can be wrapped:
 
 ```ts
-import { red, bold, underline } from 'marker';
+import { red, bold, underline } from 'console-marker';
 
 const error   = (s: string) => red(bold(s));
 const heading = (s: string) => bold(underline(s));

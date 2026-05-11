@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-npm install marker
+npm install console-marker
 ```
 
 > **Node.js ≥ 20** required. Uses `String.prototype.replaceAll` and `tty.WriteStream.getColorDepth()`.
@@ -11,7 +11,7 @@ npm install marker
 ## Quick start
 
 ```ts
-import marker from 'marker';
+import marker from 'console-marker';
 
 console.log(marker.red('Hello world'));
 console.log(marker.bold.green('Build complete'));
@@ -32,7 +32,7 @@ console.log(marker.red('Hello world'));
 Tree-shakeable single-style imports:
 
 ```ts
-import { red, bold, green, bgBlue, cyan } from 'marker';
+import { red, bold, green, bgBlue, cyan } from 'console-marker';
 
 console.log(red('error'));
 console.log(bold(green('ok')));
@@ -43,7 +43,7 @@ console.log(bold(green('ok')));
 Types are bundled. No `@types/marker` needed.
 
 ```ts
-import marker, { type Builder } from 'marker';
+import marker, { type Builder } from 'console-marker';
 
 function highlight(text: string): string {
   return marker.bold.yellow(text);

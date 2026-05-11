@@ -1,11 +1,11 @@
-# marker
+# console-marker
 
 > High-performance terminal string styling for Node.js 20+
 
 [![CI](https://github.com/RemcoDewlde/marker/actions/workflows/ci.yml/badge.svg)](https://github.com/RemcoDewlde/marker/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/RemcoDewlde/marker/graph/badge.svg?token=4C7L7LVYN1)](https://codecov.io/gh/RemcoDewlde/marker)
-[![npm version](https://img.shields.io/npm/v/marker.svg)](https://www.npmjs.com/package/marker)
-[![Node.js](https://img.shields.io/node/v/marker.svg)](https://nodejs.org)
+[![npm version](https://img.shields.io/npm/v/console-marker.svg)](https://www.npmjs.com/package/console-marker)
+[![Node.js](https://img.shields.io/node/v/console-marker.svg)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue.svg)](tsconfig.json)
 
@@ -27,7 +27,7 @@ chalk  .rgb()     197 ns   marker .rgb()     169 ns   marker 1.16× faster
 
 - **Chainable API** — `marker.bold.red.underline('text')`
 - **Tagged template literals built-in** — `marker.red\`Hello ${name}!\`` (no separate package needed)
-- **Named exports** — `import { red, bold } from 'marker'` for tree-shaking
+- **Named exports** — `import { red, bold } from 'console-marker'` for tree-shaking
 - **Full color model support** — RGB, hex, ANSI 256, truecolor fallback to 256→16 automatically
 - **Dual ESM + CJS** — works in any Node.js project, no config needed
 - **Strict TypeScript** — every method typed, zero `any`
@@ -39,7 +39,7 @@ chalk  .rgb()     197 ns   marker .rgb()     169 ns   marker 1.16× faster
 ## Installation
 
 ```bash
-npm install marker
+npm install console-marker
 ```
 
 > **Node.js ≥ 20** required. Uses `String.prototype.replaceAll`, `tty.WriteStream.getColorDepth()`.
@@ -49,7 +49,7 @@ npm install marker
 ## Quick start
 
 ```ts
-import marker from 'marker';
+import marker from 'console-marker';
 
 console.log(marker.red('Hello world'));
 console.log(marker.bold.green('Build complete'));
@@ -95,7 +95,7 @@ marker.bgRed.white.bold` ERROR ` + marker.red` ${message}`
 ### Named exports (tree-shakeable)
 
 ```ts
-import { red, bold, green, bgBlue, cyan } from 'marker';
+import { red, bold, green, bgBlue, cyan } from 'console-marker';
 
 red('error')
 bold(green('ok'))
@@ -123,7 +123,7 @@ Auto-downsamples to 256-color or 16-color when the terminal doesn't support true
 ### Custom color level
 
 ```ts
-import { withLevel } from 'marker';
+import { withLevel } from 'console-marker';
 
 const m = withLevel(0)   // 0=none, 1=16-color, 2=256-color, 3=truecolor
 m.red('text')            // → 'text' (level 0 passes through unchanged)
@@ -132,7 +132,7 @@ m.red('text')            // → 'text' (level 0 passes through unchanged)
 ### Color detection
 
 ```ts
-import { supportsColor, supportsColorStderr } from 'marker';
+import { supportsColor, supportsColorStderr } from 'console-marker';
 
 if (supportsColor) {
   // stdout supports ANSI colors

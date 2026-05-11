@@ -1,5 +1,5 @@
 {
-  "name": "marker",
+  "name": "console-marker",
   "version": "0.1.0",
   "description": "High-performance terminal string styling for Node.js 20+",
   "type": "module",

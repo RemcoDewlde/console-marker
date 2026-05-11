@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: marker
+  name: console-marker
   text: Terminal styling that wins where it counts
   tagline: Zero dependencies · Dual ESM/CJS · 100% TypeScript · Node.js 20+
   actions:
@@ -31,7 +31,7 @@ features:
     details: Use marker.red`Hello ${name}!` without any extra package. chalk requires chalk-template separately.
   - icon: 🌲
     title: Tree-shakeable
-    details: Named exports let bundlers drop every style you don't use. import { red, bold } from 'marker' — nothing else ships.
+    details: Named exports let bundlers drop every style you don't use. import { red, bold } from 'console-marker' — nothing else ships.
   - icon: 📦
     title: Zero dependencies
     details: No ansi-styles, no supports-color. Color detection, ANSI constants, and the builder are all written from scratch.

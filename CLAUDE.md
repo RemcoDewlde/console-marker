@@ -22,8 +22,8 @@ npm run bench      # build then mitata comparison vs chalk
 ## API
 
 ```ts
-import marker from 'marker';
-import { red, bold, withLevel, supportsColor } from 'marker';
+import marker from 'console-marker';
+import { red, bold, withLevel, supportsColor } from 'console-marker';
 
 // Chaining
 marker.red.bold('Hello')

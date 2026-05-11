@@ -3,7 +3,7 @@
 Styles compose left-to-right. Each accessor returns a new builder; calling it applies the accumulated styles.
 
 ```ts
-import marker from 'marker';
+import marker from 'console-marker';
 
 marker.red('text')
 marker.bold.red('text')

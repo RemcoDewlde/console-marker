@@ -3,7 +3,7 @@
 ## Default export
 
 ```ts
-import marker from 'marker';
+import marker from 'console-marker';
 ```
 
 The default export is a root `Builder` at the auto-detected color level.
@@ -103,7 +103,7 @@ import {
 
   // Utilities
   withLevel, supportsColor, supportsColorStderr,
-} from 'marker';
+} from 'console-marker';
 ```
 
 Each named style export is a `Builder` equivalent to `marker.<style>`.
@@ -113,7 +113,7 @@ Each named style export is a `Builder` equivalent to `marker.<style>`.
 Create a root builder fixed at a specific color level.
 
 ```ts
-import { withLevel } from 'marker';
+import { withLevel } from 'console-marker';
 
 const m = withLevel(0);   // colors disabled
 const m3 = withLevel(3);  // force truecolor
@@ -124,7 +124,7 @@ const m3 = withLevel(3);  // force truecolor
 ## `supportsColor`
 
 ```ts
-import { supportsColor } from 'marker';
+import { supportsColor } from 'console-marker';
 
 // supportsColor is false | { level: ColorLevel }
 if (supportsColor) {
@@ -141,7 +141,7 @@ Same as `supportsColor` but for `process.stderr`.
 ## Types
 
 ```ts
-import type { Builder, ColorLevel } from 'marker';
+import type { Builder, ColorLevel } from 'console-marker';
 ```
 
 `ColorLevel = 0 | 1 | 2 | 3`

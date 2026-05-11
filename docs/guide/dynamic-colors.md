@@ -7,7 +7,7 @@ marker supports RGB, hex, and ANSI 256 — and automatically downsamples to the 
 Any of 16 million colors:
 
 ```ts
-import marker from 'marker';
+import marker from 'console-marker';
 
 marker.rgb(255, 100, 0)('text')       // foreground
 marker.bgRgb(0, 128, 255)('text')     // background
@@ -49,7 +49,7 @@ When the terminal does not support truecolor, marker automatically converts:
 You can force a specific level for testing:
 
 ```ts
-import { withLevel } from 'marker';
+import { withLevel } from 'console-marker';
 
 const m1 = withLevel(1);
 m1.hex('#FF6400')('text')  // → ANSI 16 escape

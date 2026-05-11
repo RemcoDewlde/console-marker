@@ -14,7 +14,7 @@ marker uses a 0–3 color level to control output depth, matching chalk's conven
 The level is detected once at module load from `process.stdout`:
 
 ```ts
-import { supportsColor, supportsColorStderr } from 'marker';
+import { supportsColor, supportsColorStderr } from 'console-marker';
 
 if (supportsColor) {
   console.log(`stdout supports color level ${supportsColor.level}`);
@@ -42,7 +42,7 @@ These take effect at startup — changing `process.env.FORCE_COLOR` after import
 Create a builder fixed to a specific level:
 
 ```ts
-import { withLevel } from 'marker';
+import { withLevel } from 'console-marker';
 
 const m = withLevel(0);   // colors off — useful for testing
 m.red('text')             // → 'text' (unchanged)
@@ -54,7 +54,7 @@ m256.rgb(255, 100, 0)('text')  // → ANSI 256 escape, not truecolor
 ## Checking the current level
 
 ```ts
-import marker from 'marker';
+import marker from 'console-marker';
 
 console.log(marker.level);  // 0 | 1 | 2 | 3
 ```

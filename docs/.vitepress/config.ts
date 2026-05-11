@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
-  title: 'marker',
+  title: 'console-marker',
   description: 'High-performance terminal string styling for Node.js 20+',
   base: '/marker/',
   lang: 'en-US',
