@@ -2,6 +2,8 @@
 
 > High-performance terminal string styling for Node.js 20+
 
+[![CI](https://github.com/RemcoDewlde/marker/actions/workflows/ci.yml/badge.svg)](https://github.com/RemcoDewlde/marker/actions/workflows/ci.yml)
+[![Coverage](https://codecov.io/gh/RemcoDewlde/marker/graph/badge.svg)](https://codecov.io/gh/RemcoDewlde/marker)
 [![npm version](https://img.shields.io/npm/v/marker.svg)](https://www.npmjs.com/package/marker)
 [![Node.js](https://img.shields.io/node/v/marker.svg)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -179,7 +181,7 @@ Bright variants: `bgRedBright` `bgGreenBright` … `bgWhiteBright` `bgBlackBrigh
 
 ## Benchmarks
 
-Measured with [mitata](https://github.com/nicolo-ribaudo/mitata) on Apple M3 Pro, Node 24.2.0. Both libraries forced to level 3 (truecolor) for a fair comparison.
+Measured with [mitata](https://github.com/evanwashere/mitata) on Apple M3 Pro, Node 24.2.0. Both libraries forced to level 3 (truecolor) for a fair comparison.
 
 ```
 cpu: Apple M3 Pro
@@ -207,6 +209,8 @@ Run them yourself:
 npm run bench
 ```
 
+Benchmarks use [mitata](https://github.com/evanwashere/mitata) — a V8-JIT-aware harness that warms up before measuring so results reflect steady-state performance.
+
 ---
 
 ## Examples
@@ -220,10 +224,12 @@ examples/
   named-imports.ts    Tree-shaking with named imports
   levels.ts           Color level detection and control
   showcase.ts         Full-featured terminal UI demo
+  compare-chalk.ts    Side-by-side visual comparison with chalk
 ```
 
 ```bash
 node --import tsx/esm examples/showcase.ts
+node --import tsx/esm examples/compare-chalk.ts
 ```
 
 ---
@@ -260,6 +266,28 @@ All ANSI codes are hardcoded string constants in `src/ansi.ts`. There are no run
 ### Native string operations
 
 `applyStyle` uses `str.includes('\x1b')` and `str.indexOf('\n')` — V8 implements both with SIMD. A single hand-rolled JavaScript character loop was 18× slower on long strings.
+
+---
+
+## Testing
+
+```bash
+npm test               # run tests
+npm test -- --coverage # run tests + branch coverage report
+npm run typecheck      # TypeScript strict check
+```
+
+The test suite aims for **MC/DC coverage** (Modified Condition/Decision Coverage — the DO-178C avionics standard): every condition in every branch decision is demonstrated to independently affect the outcome.
+
+```
+File        | % Stmts | % Branch | % Funcs | % Lines
+------------|---------|----------|---------|--------
+ansi.ts     |     100 |      100 |     100 |    100
+apply.ts    |     100 |      100 |     100 |    100
+builder.ts  |     100 |      100 |     100 |    100
+detect.ts   |     100 |      100 |     100 |    100
+utils.ts    |     100 |      100 |     100 |    100
+```
 
 ---
 
