@@ -73,21 +73,24 @@ Builders use `Object.setPrototypeOf(fn, builderProto)` — the same pattern as c
 `applyStyle` uses `str.includes('\x1b')` and `str.indexOf('\n')` — both are SIMD-backed in V8. A hand-rolled JS character loop was 18x slower for long strings.
 
 ### typeof hot-path guard
-The builder function checks `typeof first === 'string'` before the tagged-template-array check, so normal string calls skip the Array.isArray + `'raw' in obj` test entirely.
+The builder function checks `typeof first === 'string'` before the tagged-template-array check, so normal string calls skip the `'raw' in obj` test entirely.
+
+### Split root/non-root builder closures
+`makeBuilderFn` creates two separate function closures: one for the root builder (pass-through) and one for styled builders. The styled closure has no `isRoot` branch — the JIT sees a single unconditional code path. Combined with changing `...args` rest parameter to an explicit `(first, ...values)` signature, this eliminates the heap array allocation for every single-string call (V8 elides the empty `values` rest array). Result: single-style-short dropped from 26 ns → 15 ns.
 
 ## Benchmark results (Apple M3 Pro, Node 24)
 
 | Scenario | chalk | marker | Winner |
 |---|---|---|---|
-| Single style, short | 14ns | 21ns | chalk 1.49x |
-| Single style, long (440 chars) | 36ns | 39ns | ~tied |
-| Chain 2 levels | 22ns | 27ns | chalk 1.24x |
-| Chain 3 levels | 17ns | 27ns | chalk 1.57x |
-| **Chain 5 levels** | 56ns | **38ns** | **marker 1.46x** |
-| Newlines (3 lines) | 71ns | 74ns | ~tied |
-| Embedded ANSI | 36ns | 43ns | chalk 1.21x |
-| **rgb() truecolor** | 194ns | **182ns** | **marker 1.06x** |
-| **hex() truecolor** | 283ns | **233ns** | **marker 1.22x** |
+| **Single style, short** | 14ns | **15ns** | **~tied** (was chalk 1.82×) |
+| Single style, long (440 chars) | 37ns | 39ns | ~tied |
+| **Chain 2 (bold.red)** | 21ns | **20ns** | **marker 1.06×** |
+| Chain 3 levels | 17ns | 23ns | chalk 1.34× |
+| **Chain 5 levels** | 56ns | **33ns** | **marker 1.70×** |
+| Newlines (3 lines) | 69ns | 70ns | ~tied |
+| Embedded ANSI | 34ns | 39ns | chalk 1.14× |
+| **rgb() truecolor** | 197ns | **169ns** | **marker 1.16×** |
+| **hex() truecolor** | 292ns | **232ns** | **marker 1.26×** |
 
 ## Color level detection
 

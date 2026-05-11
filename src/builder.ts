@@ -206,27 +206,38 @@ function makeBuilderFn(
   closes: readonly string[],
   level: ColorLevel,
 ): InternalBuilder {
-  const isRoot = openAll === '';
-
-  // Hot path: `typeof first === 'string'` is a single V8 comparison and lets
-  // the JIT skip the tagged-template-array check entirely for the common case.
-  const fn = (...args: unknown[]): string => {
-    const first = args[0];
-    let str: string;
-    if (typeof first === 'string') {
-      str = first;
-    } else if (first !== null && typeof first === 'object' && 'raw' in (first as object)) {
-      // Tagged template literal — `marker.red\`Hello ${name}\``
-      const tsa = first as TemplateStringsArray;
-      str = tsa[0] ?? '';
-      for (let i = 1; i < tsa.length; i++) str += String(args[i]) + (tsa[i] ?? '');
-    } else {
-      str = '' + (first ?? '');
-    }
-
-    if (isRoot || !str) return str;
-    return applyStyle(openAll, closeAll, closes, opens, level, str);
-  };
+  // Two separate closures so the JIT sees a single, unconditional code path in
+  // each case — no isRoot branch in the styled hot path, and first is a named
+  // parameter (register-allocated) rather than args[0] (heap array element).
+  // V8 also elides the empty `values` rest array for single-string calls.
+  const fn: (first: unknown, ...values: unknown[]) => string =
+    openAll === ''
+      ? function rootFn(first, ...values) {
+          if (typeof first === 'string') return first;
+          if (first !== null && typeof first === 'object' && 'raw' in (first as object)) {
+            const tsa = first as TemplateStringsArray;
+            let str = tsa[0] ?? '';
+            for (let i = 1; i < tsa.length; i++) str += String(values[i - 1]) + (tsa[i] ?? '');
+            return str;
+          }
+          return '' + (first ?? '');
+        }
+      : function styleFn(first, ...values) {
+          if (typeof first === 'string') {
+            if (!first) return first;
+            return applyStyle(openAll, closeAll, closes, opens, level, first);
+          }
+          if (first !== null && typeof first === 'object' && 'raw' in (first as object)) {
+            const tsa = first as TemplateStringsArray;
+            let str = tsa[0] ?? '';
+            for (let i = 1; i < tsa.length; i++) str += String(values[i - 1]) + (tsa[i] ?? '');
+            if (!str) return str;
+            return applyStyle(openAll, closeAll, closes, opens, level, str);
+          }
+          const str = '' + (first ?? '');
+          if (!str) return str;
+          return applyStyle(openAll, closeAll, closes, opens, level, str);
+        };
 
   const internalFn = fn as unknown as InternalBuilder;
 

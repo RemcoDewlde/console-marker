@@ -31,6 +31,15 @@ jobs:
       - name: Test + coverage
         run: npm test -- --coverage
 
+      - name: Upload coverage to Codecov
+        if: matrix.node == 20
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          flags: unittests
+          fail_ci_if_error: false
+
       # Commit updated badge back to main after every successful push.
       # [skip ci] prevents the commit from re-triggering this workflow.
       - name: Commit coverage badge

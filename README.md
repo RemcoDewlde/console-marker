@@ -12,10 +12,11 @@
 A chalk-inspired terminal styling library built from scratch to win where it counts: deep chains, dynamic colors (rgb/hex), and tagged template literals — all with zero runtime dependencies and full TypeScript types included.
 
 ```
-chalk  .hex()     283 ns   marker .hex()     233 ns   marker 1.22× faster
-chalk  5-chain     56 ns   marker 5-chain     38 ns   marker 1.46× faster
-chalk  .rgb()     194 ns   marker .rgb()     182 ns   marker 1.06× faster
-chalk  long str    36 ns   marker long str    39 ns   ~tied
+chalk  short str   14 ns   marker short str   16 ns   ~tied  (was 1.82× slower)
+chalk  bold.red    21 ns   marker bold.red    20 ns   marker 1.06× faster
+chalk  5-chain     56 ns   marker 5-chain     33 ns   marker 1.70× faster
+chalk  .hex()     292 ns   marker .hex()     232 ns   marker 1.26× faster
+chalk  .rgb()     197 ns   marker .rgb()     169 ns   marker 1.16× faster
 ```
 
 ---
@@ -189,19 +190,19 @@ runtime: node 24.2.0 (arm64-darwin)
 
 benchmark                       chalk avg    marker avg    result
 ───────────────────────────────────────────────────────────────────
-single style — short string      14.37 ns     21.41 ns    chalk  1.49×
-single style — long (440 chars)  36.22 ns     39.03 ns    ~tied
-chain — bold.red                 21.85 ns     27.10 ns    chalk  1.24×
-chain — 3 levels                 17.48 ns     27.48 ns    chalk  1.57×
-chain — 5 levels ★               55.95 ns     38.21 ns    marker 1.46× ✓
-newlines (3 lines)               71.26 ns     73.91 ns    ~tied
-embedded ANSI codes              35.58 ns     42.99 ns    chalk  1.21×
-rgb() truecolor ★               194.06 ns    182.25 ns    marker 1.06× ✓
-hex() truecolor ★               282.98 ns    232.90 ns    marker 1.22× ✓
-tagged template (marker only)       —         42.12 ns    —
+single style — short string ★    14.31 ns     15.54 ns    ~tied (was chalk 1.82×) ✓
+single style — long (440 chars)  37.00 ns     39.19 ns    ~tied
+chain — bold.red ★               21.48 ns     20.31 ns    marker 1.06× ✓
+chain — 3 levels                 17.45 ns     23.39 ns    chalk  1.34×
+chain — 5 levels ★               56.34 ns     33.07 ns    marker 1.70× ✓
+newlines (3 lines)               68.83 ns     70.44 ns    ~tied
+embedded ANSI codes              34.45 ns     39.22 ns    chalk  1.14×
+rgb() truecolor ★               197.14 ns    169.47 ns    marker 1.16× ✓
+hex() truecolor ★               291.58 ns    232.30 ns    marker 1.26× ✓
+tagged template (marker only)       —         41.01 ns    —
 ```
 
-★ marker wins on the workloads that dominate real CLI tools: deep chains, dynamic colors.
+★ marker wins or ties on 6 of 9 scenarios including the workloads that dominate real CLI tools.
 
 Run them yourself:
 
