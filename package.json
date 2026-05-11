@@ -1,0 +1,65 @@
+{
+  "name": "marker",
+  "version": "0.1.0",
+  "description": "High-performance terminal string styling for Node.js 20+",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prebench": "npm run build",
+    "bench": "node --import tsx/esm bench/run.ts",
+    "typecheck": "tsc --noEmit",
+    "example:basic": "node --import tsx/esm examples/basic.ts",
+    "example:chain": "node --import tsx/esm examples/chaining.ts",
+    "example:colors": "node --import tsx/esm examples/dynamic-colors.ts",
+    "example:template": "node --import tsx/esm examples/template-literals.ts",
+    "example:imports": "node --import tsx/esm examples/named-imports.ts",
+    "example:levels": "node --import tsx/esm examples/levels.ts",
+    "example:showcase": "node --import tsx/esm examples/showcase.ts",
+    "example:compare": "node --import tsx/esm examples/compare-chalk.ts"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "chalk",
+    "ansi",
+    "terminal",
+    "color",
+    "colour",
+    "colors",
+    "cli",
+    "string"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "chalk": "^5.3.0",
+    "mitata": "^1.0.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
