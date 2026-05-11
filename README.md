@@ -2,14 +2,14 @@
 
 > High-performance terminal string styling for Node.js 20+
 
-[![CI](https://github.com/RemcoDewlde/marker/actions/workflows/ci.yml/badge.svg)](https://github.com/RemcoDewlde/marker/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/RemcoDewlde/marker/graph/badge.svg?token=4C7L7LVYN1)](https://codecov.io/gh/RemcoDewlde/marker)
+[![CI](https://github.com/RemcoDewlde/console-marker/actions/workflows/ci.yml/badge.svg)](https://github.com/RemcoDewlde/console-marker/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/RemcoDewlde/console-marker/graph/badge.svg?token=4C7L7LVYN1)](https://codecov.io/gh/RemcoDewlde/console-marker)
 [![npm version](https://img.shields.io/npm/v/console-marker.svg)](https://www.npmjs.com/package/console-marker)
 [![Node.js](https://img.shields.io/node/v/console-marker.svg)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue.svg)](tsconfig.json)
 
-**[Documentation](https://remcodewlde.github.io/marker/)**
+**[Documentation](https://remcodewlde.github.io/console-marker/)**
 
 A chalk-inspired terminal styling library built from scratch to win where it counts: deep chains, dynamic colors (rgb/hex), and tagged template literals — all with zero runtime dependencies and full TypeScript types included.
 

@@ -3,11 +3,11 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'console-marker',
   description: 'High-performance terminal string styling for Node.js 20+',
-  base: '/marker/',
+  base: '/console-marker/',
   lang: 'en-US',
 
   head: [
-    ['link', { rel: 'icon', href: '/marker/favicon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/console-marker/favicon.svg', type: 'image/svg+xml' }],
   ],
 
   themeConfig: {
@@ -20,7 +20,7 @@ export default defineConfig({
       {
         text: '0.1.0',
         items: [
-          { text: 'Changelog', link: 'https://github.com/RemcoDewlde/marker/releases' },
+          { text: 'Changelog', link: 'https://github.com/RemcoDewlde/console-marker/releases' },
           { text: 'npm', link: 'https://www.npmjs.com/package/console-marker' },
         ],
       },
@@ -31,7 +31,7 @@ export default defineConfig({
         text: 'Introduction',
         items: [
           { text: 'Getting Started', link: '/guide/getting-started' },
-          { text: 'Why marker?', link: '/guide/why' },
+          { text: 'Why console-marker?', link: '/guide/why' },
         ],
       },
       {
@@ -55,7 +55,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/RemcoDewlde/marker' },
+      { icon: 'github', link: 'https://github.com/RemcoDewlde/console-marker' },
       { icon: 'npm', link: 'https://www.npmjs.com/package/console-marker' },
     ],
 
@@ -69,7 +69,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/RemcoDewlde/marker/edit/main/docs/:path',
+      pattern: 'https://github.com/RemcoDewlde/console-marker/edit/main/docs/:path',
       text: 'Edit this page on GitHub',
     },
   },
